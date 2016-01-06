@@ -144,35 +144,35 @@ fxgroup
                 dcl_output_siv o6.x, clip_distance
                 dcl_temps 3
                 
-                #line 76 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 87 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 if_nz cb0[21].x
                   ld_structured_indexable(structured_buffer, stride=48)(mixed,mixed,mixed,mixed) r0.xyz, v3.x, l(0), t0.xyzx  // gSolution<0,0,0>
                   ld_structured_indexable(structured_buffer, stride=48)(mixed,mixed,mixed,mixed) r1.xyz, v3.x, l(16), t0.xyzx  // gSolution<0,0,0>
                 
-                #line 76
+                #line 87
                 else 
                   mov r0.xyz, v0.xyzx  // vin<0,1,2>
                   mov r1.xyz, v1.xyzx  // vin<3,4,5>
                 endif 
                 
-                #line 83
+                #line 94
                 mov r0.w, l(1.000000)
                 dp4 r2.x, r0.xyzw, cb0[0].xyzw  // vout<4:NaN:Inf>
                 dp4 r2.y, r0.xyzw, cb0[1].xyzw  // vout<5:NaN:Inf>
                 dp4 r2.z, r0.xyzw, cb0[2].xyzw  // vout<6:NaN:Inf>
                 
-                #line 86
+                #line 97
                 dp3 o2.x, r1.xyzx, cb0[4].xyzx  // VS<7:NaN:Inf>
                 dp3 o2.y, r1.xyzx, cb0[5].xyzx  // VS<8:NaN:Inf>
                 dp3 o2.z, r1.xyzx, cb0[6].xyzx  // VS<9:NaN:Inf>
                 
-                #line 89
+                #line 100
                 dp4 r1.x, r0.xyzw, cb0[8].xyzw  // vout<0:NaN:Inf>
                 dp4 r1.y, r0.xyzw, cb0[9].xyzw  // vout<1:NaN:Inf>
                 dp4 r1.z, r0.xyzw, cb0[10].xyzw  // vout<2:NaN:Inf>
                 dp4 r1.w, r0.xyzw, cb0[11].xyzw  // vout<3:NaN:Inf>
                 
-                #line 93
+                #line 104
                 dp4 o5.x, r0.xyzw, cb0[12].xyzw  // VS<16:NaN:Inf>
                 dp4 o5.y, r0.xyzw, cb0[13].xyzw  // VS<17:NaN:Inf>
                 dp4 o5.z, r0.xyzw, cb0[14].xyzw  // VS<18:NaN:Inf>
@@ -316,76 +316,76 @@ fxgroup
                 dcl_output o1.xyzw
                 dcl_temps 7
                 
-                #line 104 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 115 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 add r0.xyz, -v1.xyzx, cb0[15].xyzx
                 dp3 r0.w, r0.xyzx, r0.xyzx
                 rsq r0.w, r0.w
                 mul r0.xyz, r0.wwww, r0.xyzx  // toEyeW<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 90 "LightHelper.fx"
+                #line 98 "LightHelper.fx"
                 add r1.xyz, -v1.xyzx, cb0[7].xyzx  // lightVec<0:Inf,1:Inf,2:Inf>
                 
-                #line 93
+                #line 101
                 dp3 r2.z, r1.xyzx, r1.xyzx
                 sqrt r2.y, r2.z  // d<0:NaN:Inf>
                 
-                #line 100
+                #line 108
                 div r1.xyz, r1.xyzx, r2.yyyy  // lightVec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 102 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 113 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 dp3 r0.w, v2.xyzx, v2.xyzx
                 rsq r0.w, r0.w
                 mul r3.xyz, r0.wwww, v2.xyzx  // pin<7:NaN:Inf,8:NaN:Inf,9:NaN:Inf>
                 
-                #line 114 "LightHelper.fx"
+                #line 122 "LightHelper.fx"
                 dp3 r0.w, -r1.xyzx, r3.xyzx
                 add r0.w, r0.w, r0.w
                 mad r4.xyz, r3.xyzx, -r0.wwww, -r1.xyzx  // v<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 108
+                #line 116
                 dp3 r0.w, r1.xyzx, r3.xyzx  // diffuseFactor<0:NaN:Inf>
                 
-                #line 115
+                #line 123
                 dp3 r1.x, r4.xyzx, r0.xyzx
                 max r1.x, r1.x, l(0.000000)
                 log r1.x, r1.x
                 mul r1.x, r1.x, cb1[19].w
                 exp r1.x, r1.x  // specFactor<0:NaN:Inf>
                 
-                #line 118
+                #line 126
                 mul r1.xyz, r1.xxxx, cb1[19].xyzx
                 mul r1.xyz, r1.xyzx, cb0[6].xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 112
+                #line 120
                 lt r1.w, l(0.000000), r0.w
                 
-                #line 117
+                #line 125
                 mul r4.xyz, r0.wwww, cb1[18].xyzx
                 mul r4.xyz, r4.xyzx, cb0[5].xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 112
+                #line 120
                 and r4.xyz, r1.wwww, r4.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 and r1.xyz, r1.xyzx, r1.wwww  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 122
+                #line 130
                 mov r2.x, l(1.000000)
                 dp3 r0.w, cb0[8].xyzx, r2.xyzx
                 
-                #line 100
+                #line 108
                 ge r1.w, cb0[7].w, r2.y
                 
-                #line 122
+                #line 130
                 div r0.w, l(1.000000, 1.000000, 1.000000, 1.000000), r0.w  // att<0:NaN:Inf>
                 
-                #line 125
+                #line 133
                 mul r1.xyz, r0.wwww, r1.xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 mul r2.xyz, r0.wwww, r4.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 100
+                #line 108
                 and r2.xyz, r1.wwww, r2.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 and r1.xyz, r1.xyzx, r1.wwww  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 73
+                #line 81
                 dp3 r0.w, cb0[3].xyzx, r3.xyzx
                 add r0.w, r0.w, r0.w
                 mad r4.xyz, r3.xyzx, -r0.wwww, cb0[3].xyzx  // v<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
@@ -395,39 +395,39 @@ fxgroup
                 mul r0.w, r0.w, cb1[19].w
                 exp r0.w, r0.w  // specFactor<0:NaN:Inf>
                 
-                #line 77
+                #line 85
                 mul r4.xyz, r0.wwww, cb1[19].xyzx
                 mul r4.xyz, r4.xyzx, cb0[2].xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 67
+                #line 75
                 dp3 r0.w, -cb0[3].xyzx, r3.xyzx  // diffuseFactor<0:NaN:Inf>
                 
-                #line 71
+                #line 79
                 lt r2.w, l(0.000000), r0.w
                 
-                #line 76
+                #line 84
                 mul r5.xyz, r0.wwww, cb1[18].xyzx
                 mul r5.xyz, r5.xyzx, cb0[1].xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 71
+                #line 79
                 and r5.xyz, r2.wwww, r5.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 and r4.xyz, r4.xyzx, r2.wwww  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 122 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 133 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 add r1.xyz, r1.xyzx, r4.xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 add r2.xyz, r2.xyzx, r5.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 137 "LightHelper.fx"
+                #line 145 "LightHelper.fx"
                 add r4.xyz, -v1.xyzx, cb0[12].xyzx  // lightVec<0:Inf,1:Inf,2:Inf>
                 
-                #line 140
+                #line 148
                 dp3 r5.z, r4.xyzx, r4.xyzx
                 sqrt r5.y, r5.z  // d<0:NaN:Inf>
                 
-                #line 147
+                #line 155
                 div r4.xyz, r4.xyzx, r5.yyyy  // lightVec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 161
+                #line 169
                 dp3 r0.w, -r4.xyzx, r3.xyzx
                 add r0.w, r0.w, r0.w
                 mad r6.xyz, r3.xyzx, -r0.wwww, -r4.xyzx  // v<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
@@ -437,58 +437,58 @@ fxgroup
                 mul r0.x, r0.x, cb1[19].w
                 exp r0.x, r0.x  // specFactor<0:NaN:Inf>
                 
-                #line 165
+                #line 173
                 mul r0.xyz, r0.xxxx, cb1[19].xyzx
                 mul r0.xyz, r0.xyzx, cb0[11].xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 155
+                #line 163
                 dp3 r0.w, r4.xyzx, r3.xyzx  // diffuseFactor<0:NaN:Inf>
                 
-                #line 169
+                #line 177
                 dp3 r2.w, -r4.xyzx, cb0[13].xyzx
                 max r2.w, r2.w, l(0.000000)
                 log r2.w, r2.w
                 mul r2.w, r2.w, cb0[13].w
                 exp r2.w, r2.w  // spot<0:NaN:Inf>
                 
-                #line 159
+                #line 167
                 lt r3.y, l(0.000000), r0.w
                 
-                #line 164
+                #line 172
                 mul r4.xyz, r0.wwww, cb1[18].xyzx
                 mul r4.xyz, r4.xyzx, cb0[10].xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 159
+                #line 167
                 and r4.xyz, r3.yyyy, r4.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 and r0.xyz, r0.xyzx, r3.yyyy  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 172
+                #line 180
                 mov r5.x, l(1.000000)
                 dp3 r0.w, cb0[14].xyzx, r5.xyzx
                 
-                #line 147
+                #line 155
                 ge r3.y, cb0[12].w, r5.y
                 
-                #line 172
+                #line 180
                 div r0.w, r2.w, r0.w  // att<0:NaN:Inf>
                 
-                #line 176
+                #line 184
                 mul r0.xyz, r0.wwww, r0.xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 mul r4.xyz, r0.wwww, r4.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 147
+                #line 155
                 and r4.xyz, r3.yyyy, r4.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 126 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 137 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 add r2.xyz, r2.xyzx, r4.xyzx  // diffuse<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 147 "LightHelper.fx"
+                #line 155 "LightHelper.fx"
                 and r0.xyz, r0.xyzx, r3.yyyy  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 127 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 138 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 add r0.xyz, r0.xyzx, r1.xyzx  // spec<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 141
+                #line 154
                 div r0.w, v4.x, v4.w
                 mad r1.x, r0.w, l(0.500000), l(0.500000)  // refCord<0:NaN:Inf>
                 div r0.w, -v4.y, v4.w
@@ -496,26 +496,26 @@ fxgroup
                 mad r1.xy, r3.xzxx, l(0.020000, 0.020000, 0.000000, 0.000000), r1.xyxx  // refCord<0:NaN:Inf,1:NaN:Inf>
                 mul r3.xz, r3.xxzx, l(0.020000, 0.000000, 0.020000, 0.000000)
                 
-                #line 150
+                #line 180
                 sample_indexable(texture2d)(float,float,float,float) r0.w, r1.xyxx, t3.xzwy, s0  // refPosition<1:Inf>
                 
-                #line 146
+                #line 159
                 sample_indexable(texture2d)(float,float,float,float) r4.xyzw, r1.xyxx, t1.xyzw, s0  // refColor<0:Inf,1:Inf,2:Inf,3:Inf>
                 
-                #line 152
+                #line 181
                 mul r0.w, r0.w, r0.w
                 mul r0.w, r0.w, l(0.001667)  // blendFactor<0:NaN:Inf>
                 min r0.w, r0.w, l(1.000000)  // blendFactor<0:[0f,1f]>
                 
-                #line 147
+                #line 160
                 eq r1.x, r4.w, l(0.000000)
                 movc r4.xyzw, r1.xxxx, l(1.000000,1.000000,1.000000,1.000000), r4.xyzw  // refColor<0:Inf,1:Inf,2:Inf,3:Inf>
                 
-                #line 173
+                #line 185
                 add r5.xyzw, -r4.xyzw, l(1.000000, 1.000000, 1.000000, 1.000000)
                 mad r4.xyzw, r0.wwww, r5.xyzw, r4.xyzw
                 
-                #line 161
+                #line 170
                 div r0.w, v5.x, v5.w
                 mad r1.x, r0.w, l(0.500000), r3.x
                 div r0.w, -v5.y, v5.w
@@ -525,45 +525,45 @@ fxgroup
                 eq r0.w, r5.w, l(0.000000)
                 movc r5.xyzw, r0.wwww, l(1.000000,1.000000,1.000000,1.000000), r5.xyzw  // reflColor<0:Inf,1:Inf,2:Inf,3:Inf>
                 
-                #line 130
+                #line 142
                 sample_indexable(texture2d)(float,float,float,float) r6.xyzw, v3.xyxx, t0.xyzw, s0  // textColor<0:Inf,1:Inf,2:Inf,3:Inf>
                 eq r0.w, r6.w, l(0.000000)
                 movc r6.xyzw, r0.wwww, l(1.000000,1.000000,1.000000,1.000000), r6.xyzw  // textColor<0:Inf,1:Inf,2:Inf,3:Inf>
                 
-                #line 173
+                #line 185
                 mul r5.xyzw, r5.xyzw, r6.xyzw
                 mul r4.xyzw, r4.xyzw, r5.xyzw
                 mul r4.xyzw, r4.xyzw, cb1[20].xxxx  // textColor<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf,3:NaN:Inf>
                 
-                #line 150 "LightHelper.fx"
+                #line 158 "LightHelper.fx"
                 mul r1.xyz, cb0[9].xyzx, cb1[17].xyzx  // ambient<0:Inf,1:Inf,2:Inf>
                 
-                #line 174
+                #line 182
                 mul r1.xyz, r2.wwww, r1.xyzx  // ambient<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 147
+                #line 155
                 and r1.xyz, r1.xyzx, r3.yyyy  // ambient<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 103
+                #line 111
                 mul r3.xyz, cb0[4].xyzx, cb1[17].xyzx  // ambient<0:Inf,1:Inf,2:Inf>
                 
-                #line 100
+                #line 108
                 and r3.xyz, r1.wwww, r3.xyzx  // ambient<0:Inf,1:Inf,2:Inf>
                 
-                #line 120 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\D3DS\LightningDemo\bin\Debug\FX\lighting.fx"
+                #line 131 "C:\Users\Admin\Documents\Visual Studio 2013\Projects\WavesSimulator\WavesSimulator\bin\Debug\FX\lighting.fx"
                 mad r3.xyz, cb1[17].xyzx, cb0[0].xyzx, r3.xyzx  // ambient<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 125
+                #line 136
                 add r1.xyz, r1.xyzx, r3.xyzx  // ambient<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 175
+                #line 187
                 add r1.xyz, r2.xyzx, r1.xyzx
                 mad r2.xyz, r1.xyzx, r4.xyzx, r0.xyzx  // litColor<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 add r0.xyz, r0.xyzx, r1.xyzx  // litColor<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 lt r0.w, l(0.000000), r4.w
                 movc o0.xyz, r0.wwww, r2.xyzx, r0.xyzx  // PS<0:NaN:Inf,1:NaN:Inf,2:NaN:Inf>
                 
-                #line 190
+                #line 201
                 mov o0.w, cb1[18].w  // PS<3>
                 mov o1.xyz, v1.xyzx  // PS<4,5,6>
                 mov o1.w, l(1.000000)  // PS<7: 1f>

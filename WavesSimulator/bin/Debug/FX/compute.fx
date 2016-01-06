@@ -1,3 +1,9 @@
+/**
+* This is a Direct Compute based implementation of Wave Simulation Algorithm provided in http://richardssoftware.net/ DirectX 11 Tutorials - Waves Tutorial
+* The original code calculates Vertex Displacements in Software using CPU.
+* I have modified the original code and written it to be compatible with Direct Compute. 
+* Original Code Source  - https://github.com/ericrrichards/dx11/blob/master/DX11/Core/Waves.cs
+*/
 #define BLOCK_SIZE 32
 
 cbuffer perFrame : register(b0)
@@ -6,7 +12,7 @@ cbuffer perFrame : register(b0)
 	uint ColumnCount;
 	float _spatialStep;
 	float dummy;	
-	float4 k;
+	float4 k; 
 
 }
 

@@ -1,3 +1,14 @@
+/**
+* Code Improved from http://richardssoftware.net/ SlimDX Lighting Tutorial.
+*
+* Contains some code directly copied from the below mentioned repository belonging to author of  http://richardssoftware.net/ SlimDX Tutorial.
+* Source: https://github.com/ericrrichards/dx11/blob/master/DX11/LightingDemo/FX/lighting.fx
+*
+* Code related to Texturing and Lighting are Copied from Above mentioned Source of RichardsSoftware.net
+* Code related to reflection and refraction are based on http://www.rastertek.com/ Direct 3D 11 Tutorial - Water. Some minor portions are directly copied from the source http://www.rastertek.com/dx11tut29.html
+*
+**/
+
 #include "LightHelper.fx"
 
 struct Solution
@@ -23,7 +34,7 @@ cbuffer cbPerObject
 	float4x4 gReflectViewProj;
 	float4 gClipPlane;
 	Material gMaterial;
-	bool gUseStructBuf;
+	bool gUseStructBuf; //should the StructuredBuffer gSolution be used to retrieve vertices positions. Set true for rendering water.
 	bool3 dummy;
 	
 };
@@ -36,7 +47,7 @@ struct VertexIn {
 	uint VertexID : SV_VertexID;
 };
 
-StructuredBuffer<Solution> gSolution;
+StructuredBuffer<Solution> gSolution; //used to pass output from compute shader consisting of newly calculated vertex positions
 Texture2D gDiffuseMap;
 Texture2D gRefractiveMap;
 Texture2D gReflectiveMap;
@@ -126,6 +137,7 @@ PSOut PS(VertexOut pin)
 	diffuse += D;
 	spec += S;
 
+	//Sample Difuse Texture
 	float4 textColor = float4(1, 1, 1, 1);
 	textColor = gDiffuseMap.Sample(samAnisotropic, pin.Tex);
 	if (textColor.a == 0)
@@ -133,11 +145,12 @@ PSOut PS(VertexOut pin)
 		textColor = float4(1, 1, 1, 1);
 	}
 	
+	//Sample Refraction
 	float4 refColor = float4(1, 1, 1, 1);
 
 	float2 refCord = pin.RefractText.xy;
 
-		// Calculate the projected refraction texture coordinates.
+	// Calculate the projected refraction texture coordinates.
 	refCord.x = pin.RefractText.x / pin.RefractText.w / 2.0f + 0.5f;
 	refCord.y = -pin.RefractText.y / pin.RefractText.w / 2.0f + 0.5f;
 
@@ -147,18 +160,14 @@ PSOut PS(VertexOut pin)
 	if (refColor.a == 0)
 		refColor = float4(1, 1, 1, 1);
 
-	float4 refPosition = gRefractionPositionMap.Sample(samAnisotropic, refCord);
-
-		float blendFactor = refPosition.y * refPosition.y / 600.0f;
-	blendFactor = min(blendFactor, 1);
-
+	//Sample Reflection
 
 	float4 reflColor = float4(1, 1, 1, 1);
 
-		float2 reflCord = pin.ReflectText.xy;
+	float2 reflCord = pin.ReflectText.xy;
 
-		// Calculate the projected refraction texture coordinates.
-		reflCord.x = pin.ReflectText.x / pin.ReflectText.w / 2.0f + 0.5f;
+	// Calculate the projected refraction texture coordinates.
+	reflCord.x = pin.ReflectText.x / pin.ReflectText.w / 2.0f + 0.5f;
 	reflCord.y = -pin.ReflectText.y / pin.ReflectText.w / 2.0f + 0.5f;
 
 	reflCord = reflCord + (pin.NormalW.xz * 0.02f);
@@ -167,27 +176,29 @@ PSOut PS(VertexOut pin)
 	if (reflColor.a == 0)
 		reflColor = float4(1, 1, 1, 1);
 
+	//Sample Reflection, Refraction blend factor
+	float4 refPosition = gRefractionPositionMap.Sample(samAnisotropic, refCord);
+	float blendFactor = refPosition.y * refPosition.y / 600.0f;
+	blendFactor = min(blendFactor, 1);
 
-
-	
-textColor = textColor * (lerp(reflColor,float4(1,1,1,1),float4(0.0f,0.0f,0.0f,0.0f))  )*lerp(refColor,float4(1,1,1,1),float4(blendFactor,blendFactor,blendFactor,blendFactor)) * gMaterial.Reflect.r;
+	//Calculate net result from Diffuse Map, Reflection and Refraction
+	textColor = textColor * (lerp(reflColor,float4(1,1,1,1),float4(0.0f,0.0f,0.0f,0.0f))  )*lerp(refColor,float4(1,1,1,1),float4(blendFactor,blendFactor,blendFactor,blendFactor)) * gMaterial.Reflect.r;
 	
 	float4 litColor = (ambient + diffuse) + spec;
 	if (textColor.a > 0)
 		litColor = (ambient + diffuse) *textColor  + spec;
 	
 
-		// Common to take alpha from diffuse material.
-
+	
 		
 	
-		litColor.a = gMaterial.Diffuse.a ;
+	litColor.a = gMaterial.Diffuse.a ;
 	
 
-		PSOut output;
-		output.color = litColor;
-		output.pos = float4(pin.PosW.xyz,1);
-		return output;
+	PSOut output;
+	output.color = litColor;
+	output.pos = float4(pin.PosW.xyz,1);
+	return output;
 }
 
 

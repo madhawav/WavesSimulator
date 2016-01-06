@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\FX\compute.fx" />
+    <Content Include="bin\Debug\FX\LightHelper.fx" />
     <Content Include="bin\Debug\FX\lighting.cod" />
     <Content Include="bin\Debug\FX\lighting.fx" />
     <Content Include="bin\Debug\Textures\Sources.txt" />
