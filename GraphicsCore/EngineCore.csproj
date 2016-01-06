@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6E9D914C-7BFC-42A3-8819-C570BF4EAC60}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{9C9B95AB-22F1-4788-9420-C71E9DCED35E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WavesSimulator</RootNamespace>
-    <AssemblyName>WavesSimulator</AssemblyName>
+    <RootNamespace>GraphicsCore</RootNamespace>
+    <AssemblyName>GraphicsCore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -56,59 +54,33 @@
     <Reference Include="SharpDX.Mathematics">
       <HintPath>D:\Software\SharpDX\Bin\Desktop\SharpDX.Mathematics.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.MediaFoundation">
-      <HintPath>D:\Software\SharpDX\Bin\Desktop\SharpDX.MediaFoundation.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AcceleratedWave.cs" />
+    <Compile Include="D3DApp.cs" />
+    <Compile Include="D3DForm.cs" />
+    <Compile Include="DisposableClass.cs" />
+    <Compile Include="GameTimer.cs" />
+    <Compile Include="GeometryGenerator.cs" />
+    <Compile Include="Lighting.cs" />
+    <Compile Include="MathF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="bin\Debug\FX\lighting.fxo" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Compile Include="TextureLoader.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="VertexPN.cs" />
+    <Compile Include="WaveComputeConstantBuffer.cs" />
+    <Compile Include="WaveSolution.cs" />
+    <Compile Include="WaveSolutionChain.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GraphicsCore\EngineCore.csproj">
-      <Project>{9c9b95ab-22f1-4788-9420-c71e9dced35e}</Project>
-      <Name>EngineCore</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\FX\compute.fx" />
-    <Content Include="bin\Debug\FX\lighting.cod" />
-    <Content Include="bin\Debug\FX\lighting.fx" />
-    <Content Include="bin\Debug\Textures\Sources.txt" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

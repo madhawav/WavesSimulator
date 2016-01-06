@@ -1,3 +1,6 @@
 /obj
 /bin/Debug/*
-|/bin/Debug/FX
+!/bin/Debug/FX
+!/bin/Debug/sharpdx_direct3d11_1_effects_x64.dll
+!/bin/Debug/sharpdx_direct3d11_1_effects_x86.dll
+!/bin/Debug/Textures
