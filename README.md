@@ -1,6 +1,8 @@
 # WavesSimulator
 Improvement on [_**Dynamic Vertex Buffers: Waves Demo**_](http://richardssoftware.net/Home/Post/9) by http://richardssoftware.net/. 
 
+![alt tag](https://raw.github.com/CordPRO/WavesSimulator/master/Screenshot2.png)
+
 Ripples/Waves Simulation using Microsoft Direct Compute
 --------------------------------------------------------
 Vertex Calculation code is modified to utilize **Microsoft Direct Compute** resulting significant improvements in Performance. 
@@ -8,6 +10,7 @@ Vertex Calculation code is modified to utilize **Microsoft Direct Compute** resu
 Reflective and Refractive Water Shader
 ----------------------------------------
 Shaders involving **Reflection** and **Refraction** are also introduced to Water Surface with **Depth Based Blending.**
+![alt tag](https://raw.github.com/CordPRO/WavesSimulator/master/Screenshot.png)
 
 Sharp DX API
 ----------------------------------------
