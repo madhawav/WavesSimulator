@@ -1,5 +1,5 @@
 # WavesSimulator
-Improvement on _**Dynamic Vertex Buffers: Waves Demo**_ by http://richardssoftware.net/. 
+Improvement on [_**Dynamic Vertex Buffers: Waves Demo**_](http://richardssoftware.net/Home/Post/9) by http://richardssoftware.net/. 
 
 Ripples/Waves Simulation using Microsoft Direct Compute
 --------------------------------------------------------
