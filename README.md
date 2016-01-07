@@ -10,6 +10,7 @@ Vertex Calculation code is modified to utilize **Microsoft Direct Compute** resu
 Reflective and Refractive Water Shader
 ----------------------------------------
 Shaders involving **Reflection** and **Refraction** are also introduced to Water Surface with **Depth Based Blending.**
+
 ![alt tag](https://raw.github.com/CordPRO/WavesSimulator/master/Screenshot.png)
 
 Sharp DX API
