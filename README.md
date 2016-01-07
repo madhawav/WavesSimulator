@@ -17,4 +17,4 @@ The original code by *richardssoftware.net* utilizes **SlimDX** Wrapper. But I h
 Special Thanks
 --------------
 http://richardssoftware.net and **Eric Richards** for the wonderful SlimDX Direct 3D 11 Tutorial presented in the website.
-http://www.rastertek.com/tutdx11.html - Classic Direct 3D 11 Tutorial by Rastertek
+http://www.rastertek.com/tutdx11.html - **Classic Direct 3D 11 Tutorial** by **Rastertek**
