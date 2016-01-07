@@ -1,4 +1,4 @@
-# WavesSimulator
+# Waves Simulator
 Improvement on [_**Dynamic Vertex Buffers: Waves Demo**_](http://richardssoftware.net/Home/Post/9) by http://richardssoftware.net/. 
 
 ![alt tag](https://raw.github.com/CordPRO/WavesSimulator/master/Screenshot2.png)
@@ -13,7 +13,7 @@ Shaders involving **Reflection** and **Refraction** are also introduced to Water
 
 ![alt tag](https://raw.github.com/CordPRO/WavesSimulator/master/Screenshot.png)
 
-Sharp DX API
+SharpDX API
 ----------------------------------------
 This code is based on **SharpDX (Version 3.0)**, which is a .Net based wrapper on **Microsoft Direct X 11** API.
 The original code by *richardssoftware.net* utilizes **SlimDX** Wrapper. But I have used **SharpDX** instead of **SlimDX** since **SlimDX** has not received any updates recently. 
