@@ -1,7 +1,8 @@
 # Waves Simulator
 Improvement on [_**Dynamic Vertex Buffers: Waves Demo**_](http://richardssoftware.net/Home/Post/9) by http://richardssoftware.net/. 
 
-[![YouTube Link](http://img.youtube.com/vi/Py5x-sKptkA/0.jpg)](http://www.youtube.com/watch?v=Py5x-sKptkA)
+YouTube Preview: http://www.youtube.com/watch?v=Py5x-sKptkA
+[![alt tag](https://raw.github.com/CordPRO/WavesSimulator/master/Screenshot2.png)](http://img.youtube.com/vi/Py5x-sKptkA/0.jpg)
 
 Ripples/Waves Simulation using Microsoft Direct Compute
 --------------------------------------------------------
