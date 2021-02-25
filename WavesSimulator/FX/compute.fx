@@ -41,15 +41,15 @@ void ProcessVertex(uint3 id: SV_DispatchThreadID)
 			gPrevSolution[id.y * ColumnCount + id.x + 1].Pos.y +
 			gPrevSolution[id.y * ColumnCount + id.x - 1].Pos.y);
 
-			gCurrentSolution[id.y * ColumnCount + id.x].Pos.y = n;
+		gCurrentSolution[id.y * ColumnCount + id.x].Pos.y = n;
 
 		//Calculate Normal and Tangent
-			float l = gCurrentSolution[id.y * ColumnCount + id.x - 1].Pos.y;
-			float r = gCurrentSolution[id.y * ColumnCount + id.x + 1].Pos.y;
-			float t = gCurrentSolution[(id.y - 1) * ColumnCount + id.x].Pos.y;
-			float b = gCurrentSolution[(id.y + 1) * ColumnCount + id.x].Pos.y;
-			gCurrentSolution[id.y * ColumnCount + id.x].Normal = float4(normalize(float3(-r + l, 2.0f * _spatialStep, b - t)),1.0f);
-
-			gCurrentSolution[id.y * ColumnCount + id.x].Tangent = float4(normalize(float3(2.0f * _spatialStep, r - l, 0.0f)),1.0f);
+		float l = gCurrentSolution[id.y * ColumnCount + id.x - 1].Pos.y;
+		float r = gCurrentSolution[id.y * ColumnCount + id.x + 1].Pos.y;
+		float t = gCurrentSolution[(id.y - 1) * ColumnCount + id.x].Pos.y;
+		float b = gCurrentSolution[(id.y + 1) * ColumnCount + id.x].Pos.y;
+			
+		gCurrentSolution[id.y * ColumnCount + id.x].Normal = float4(normalize(float3(-r + l, 2.0f * _spatialStep, b - t)),1.0f);
+		gCurrentSolution[id.y * ColumnCount + id.x].Tangent = float4(normalize(float3(2.0f * _spatialStep, r - l, 0.0f)),1.0f);
 	}
 }
