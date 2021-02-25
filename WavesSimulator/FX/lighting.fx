@@ -48,10 +48,10 @@ struct VertexIn {
 };
 
 StructuredBuffer<Solution> gSolution; //used to pass output from compute shader consisting of newly calculated vertex positions
-Texture2D gDiffuseMap;
-Texture2D gRefractiveMap;
-Texture2D gReflectiveMap;
-Texture2D gRefractionPositionMap;
+Texture2D gDiffuseMap; // Diffuse Texture Map
+Texture2D gRefractiveMap; // Screen Space Refraction Render
+Texture2D gReflectiveMap; // Screen Space Reflection Render
+Texture2D gRefractionPositionMap; // xyz position of each pixel in refraction map (used to compute refraction blend factor)
 
 SamplerState samAnisotropic
 {
