@@ -182,7 +182,7 @@ PSOut PS(VertexOut pin)
 	blendFactor = min(blendFactor, 1);
 
 	//Calculate net result from Diffuse Map, Reflection and Refraction
-	textColor = textColor * (lerp(reflColor,float4(1,1,1,1),float4(0.0f,0.0f,0.0f,0.0f))  )*lerp(refColor,float4(1,1,1,1),float4(blendFactor,blendFactor,blendFactor,blendFactor)) * gMaterial.Reflect.r;
+	textColor = textColor * reflColor * lerp(refColor,float4(1,1,1,1),float4(blendFactor,blendFactor,blendFactor,blendFactor)) * gMaterial.Reflect.r;
 	
 	float4 litColor = (ambient + diffuse) + spec;
 	if (textColor.a > 0)
